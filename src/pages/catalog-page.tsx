@@ -1,8 +1,16 @@
+import Navbar from "../components/navbar";
+
 function CatalogPage() {
   return (
-    <div>
-      <h1>Catalog Page</h1>
-    </div>
+    <>
+      <Navbar />
+
+      <div className="p-10">
+        <h1 className="text-4xl font-bold">
+          Catalog Page
+        </h1>
+      </div>
+    </>
   );
 }
 

@@ -1,8 +1,16 @@
+import Navbar from "../components/navbar";
+
 function HomePage() {
   return (
-    <div>
-      <h1>Home Page</h1>
-    </div>
+    <>
+      <Navbar />
+
+      <div className="p-10">
+        <h1 className="text-4xl font-bold">
+          Home Page
+        </h1>
+      </div>
+    </>
   );
 }
 
