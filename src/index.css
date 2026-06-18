@@ -1,1 +1,41 @@
 @import "tailwindcss";
+
+/* Infinite Scroll Animations */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.33%);
+  }
+}
+
+/* Apply animations */
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+.animate-ticker {
+  animation: ticker 40s linear infinite;
+}
+
+/* Pause on hover */
+.animate-scroll:hover,
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* Smooth scrolling for better UX */
+.animate-scroll,
+.animate-ticker {
+  will-change: transform;
+}
