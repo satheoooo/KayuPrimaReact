@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import Calculator from "./calculator";
 
 function Hero() {
@@ -54,69 +53,58 @@ function Hero() {
 
       {/* Left Content */}
       <div className="relative z-10 flex flex-col gap-6 max-w-[600px]">
-        <h1 className="text-[48px] font-bold leading-tight text-[#2F5E2F]">
-          Kayu Premium untuk Proyek Impian Anda
-        </h1>
-        <p className="text-[18px] text-[#4A4A4A] leading-relaxed">
-          KayuPrima menyediakan kayu berkualitas tinggi untuk kebutuhan konstruksi,
-          furnitur, dan dekorasi. Dengan pengalaman bertahun-tahun, kami menjamin
-          mutu dan kepuasan pelanggan.
-        </p>
-        <div className="flex gap-4 mt-4">
-          <Link
-            to="/catalog"
-            className="px-6 py-3 rounded-full bg-[#2F5E2F] text-white font-medium hover:bg-[#244824] transition text-center"
-          >
-            Lihat Katalog
-          </Link>
-          <a
-            href="#contact"
-            className="px-6 py-3 rounded-full border-2 border-[#2F5E2F] text-[#2F5E2F] font-medium hover:bg-[#2F5E2F] hover:text-white transition text-center"
-          >
-            Hubungi Kami
-          </a>
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 bg-[#F0F7F0] px-4 py-2 rounded-full w-fit">
+          <svg className="w-4 h-4 text-[#2F5E2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+          <span className="text-[14px] font-medium text-[#2F5E2F]">Kalkulator Valuasi Kayu #1 di Indonesia</span>
         </div>
 
-        {/* Trust Indicators */}
-        <div className="flex items-center gap-6 mt-6 pt-6 border-t border-gray-100">
-          <div className="flex items-center gap-2">
+        {/* Headline */}
+        <h1 className="text-[52px] font-bold leading-[1.1] text-[#1a1a1a]">
+          Jangan Jual Kayu Anda Sebelum Tahu{" "}
+          <span className="text-[#2F5E2F]">Nilai Sebenarnya.</span>
+        </h1>
+
+        {/* Subtext */}
+        <p className="text-[17px] text-[#4A4A4A] leading-relaxed max-w-[500px]">
+          Hitung estimasi nilai wajar pasar untuk pohon Jati, Mahoni,
+          Sengon, dan lainnya berdasarkan data harga real-time. Cepat,
+          akurat, dan 100% gratis untuk pemilik lahan.
+        </p>
+
+        {/* Features */}
+        <div className="flex items-center gap-8 mt-6">
+          <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-[#F0F7F0] flex items-center justify-center">
               <svg className="w-5 h-5 text-[#2F5E2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <div>
-              <p className="text-[14px] font-bold text-[#2F5E2F]">100%</p>
-              <p className="text-[12px] text-[#4A4A4A]">Legal & Bersertifikat</p>
-            </div>
+            <span className="text-[14px] font-medium text-[#4A4A4A]">Kalkulasi Cepat</span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-[#F0F7F0] flex items-center justify-center">
               <svg className="w-5 h-5 text-[#2F5E2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
             </div>
-            <div>
-              <p className="text-[14px] font-bold text-[#2F5E2F]">24/7</p>
-              <p className="text-[12px] text-[#4A4A4A]">Layanan Konsultasi</p>
-            </div>
+            <span className="text-[14px] font-medium text-[#4A4A4A]">Data Aman</span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-[#F0F7F0] flex items-center justify-center">
               <svg className="w-5 h-5 text-[#2F5E2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </div>
-            <div>
-              <p className="text-[14px] font-bold text-[#2F5E2F]">Free</p>
-              <p className="text-[12px] text-[#4A4A4A]">Pengiriman Area Tertentu</p>
-            </div>
+            <span className="text-[14px] font-medium text-[#4A4A4A]">Tanpa Perantara</span>
           </div>
         </div>
       </div>
 
       {/* Right Content - Calculator */}
-      <div className="relative z-20">
+      <div className="relative z-10">
         <Calculator />
       </div>
     </section>
