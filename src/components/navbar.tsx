@@ -4,24 +4,34 @@ import { useAuth } from "../context/AuthContext";
 import Logo from "./logo";
 
 function Navbar() {
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, isAuthenticated, isPremium, logout } = useAuth();
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showPremiumModal, setShowPremiumModal] = useState(false);
 
-  const isUserPremium = false;
+  const handlePembeliPremiumClick = () => {
+    if (!isAuthenticated) {
+      setShowLoginModal(true);
+      return;
+    }
+    if (isPremium) {
+      navigate("/pembeli-premium");
+      return;
+    }
+    setShowPremiumModal(true);
+  };
 
   const handleKalkulatorPremiumClick = () => {
     if (!isAuthenticated) {
       setShowLoginModal(true);
       return;
     }
-    if (!isUserPremium) {
-      setShowPremiumModal(true);
+    if (isPremium) {
+      navigate("/premium-calculator");
       return;
     }
-    navigate("/premium-calculator");
+    setShowPremiumModal(true);
   };
 
   return (
@@ -39,12 +49,12 @@ function Navbar() {
             Katalog Pohon
           </Link>
 
-          <a
-            href="#premium"
+          <button
+            onClick={handlePembeliPremiumClick}
             className="text-[#4A4A4A] font-medium hover:text-[#2F5E2F] transition"
           >
             Pembeli Premium
-          </a>
+          </button>
 
           <button
             onClick={handleKalkulatorPremiumClick}
@@ -54,7 +64,6 @@ function Navbar() {
           </button>
 
           {isAuthenticated ? (
-            /* Profile Dropdown */
             <div className="relative">
               <button
                 onClick={() => setShowDropdown(!showDropdown)}
@@ -68,6 +77,14 @@ function Navbar() {
                 <span className="text-[14px] font-medium text-[#4A4A4A]">
                   {user?.name}
                 </span>
+                {isPremium && (
+                  <span className="inline-flex items-center gap-1 bg-yellow-100 text-yellow-700 text-[11px] font-bold px-2 py-0.5 rounded-full">
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z" />
+                    </svg>
+                    PREMIUM
+                  </span>
+                )}
                 <svg
                   className={`w-4 h-4 text-gray-400 transition ${showDropdown ? "rotate-180" : ""}`}
                   fill="none"
@@ -78,18 +95,32 @@ function Navbar() {
                 </svg>
               </button>
 
-              {/* Dropdown Menu */}
               {showDropdown && (
                 <div className="absolute right-0 top-full mt-2 w-[220px] bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
                   <div className="px-4 py-3 border-b border-gray-100">
-                    <p className="text-[14px] font-medium text-[#4A4A4A]">
+                    <p className="text-[14px] font-medium text-[#4A4A4A] flex items-center gap-2">
                       {user?.name}
+                      {isPremium && (
+                        <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z" />
+                        </svg>
+                      )}
                     </p>
                     <p className="text-[12px] text-gray-500">
                       {user?.email}
                     </p>
                   </div>
                   <div className="pt-1">
+                    <Link
+                      to="/premium"
+                      onClick={() => setShowDropdown(false)}
+                      className="flex items-center gap-3 w-full px-4 py-2.5 text-[14px] text-[#4A4A4A] hover:bg-gray-50 transition"
+                    >
+                      <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z" />
+                      </svg>
+                      {isPremium ? "Lihat Paket Premium" : "Upgrade Premium"}
+                    </Link>
                     <button
                       onClick={() => {
                         logout();
@@ -107,7 +138,6 @@ function Navbar() {
               )}
             </div>
           ) : (
-            /* Login Button */
             <Link
               to="/login"
               className="px-4 py-2 rounded-full bg-[#2F5E2F] text-white text-sm hover:bg-[#244824] transition"
@@ -151,7 +181,7 @@ function Navbar() {
         </div>
       )}
 
-      {/* Premium Modal */}
+      {/* Premium Modal — untuk yang belum premium */}
       {showPremiumModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white rounded-2xl p-8 max-w-[400px] w-full mx-4">
@@ -184,6 +214,7 @@ function Navbar() {
           </div>
         </div>
       )}
+
     </>
   );
 }

@@ -6,6 +6,7 @@ import RegisterPage from "./pages/register-page";
 import ForgotPasswordPage from "./pages/forgot-password-page";
 import CatalogPage from "./pages/catalog-page";
 import PremiumPage from "./pages/premium-page";
+import BuyersPage from "./pages/buyers-page";
 import PremiumCalculatorPage from "./pages/premium-calculator-page";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route path="/catalog" element={<CatalogPage />} />
       <Route path="/premium" element={<PremiumPage />} />
+      <Route path="/pembeli-premium" element={<BuyersPage />} />
       <Route path="/premium-calculator" element={<PremiumCalculatorPage />} />
     </Routes>
   );

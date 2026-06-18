@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const premiumBuyers = [
@@ -26,11 +26,12 @@ const premiumBuyers = [
 ];
 
 function PremiumBuyers() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isPremium } = useAuth();
+  const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showPremiumModal, setShowPremiumModal] = useState(false);
 
-  const isUserPremium = false;
+  const isUserPremium = isPremium;
 
   const handleViewAllClick = () => {
     if (!isAuthenticated) {
@@ -41,6 +42,8 @@ function PremiumBuyers() {
       setShowPremiumModal(true);
       return;
     }
+    // Sudah premium → navigasi ke halaman pembeli
+    navigate("/pembeli-premium");
   };
 
   const shouldBlur = !isAuthenticated || !isUserPremium;

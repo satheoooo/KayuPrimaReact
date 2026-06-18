@@ -10,8 +10,10 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
+  isPremium: boolean;
   login: (userData: User) => void;
   logout: () => void;
+  upgradeToPremium: () => void;
   isAuthenticated: boolean;
 }
 
@@ -19,9 +21,12 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(() => {
-    // Cek localStorage saat inisialisasi
     const savedUser = localStorage.getItem("kayuprima_user");
     return savedUser ? JSON.parse(savedUser) : null;
+  });
+
+  const [isPremium, setIsPremium] = useState<boolean>(() => {
+    return localStorage.getItem("kayuprima_premium") === "true";
   });
 
   const login = (userData: User) => {
@@ -31,11 +36,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = () => {
     setUser(null);
+    setIsPremium(false);
     localStorage.removeItem("kayuprima_user");
+    localStorage.removeItem("kayuprima_premium");
+  };
+
+  const upgradeToPremium = () => {
+    setIsPremium(true);
+    localStorage.setItem("kayuprima_premium", "true");
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+    <AuthContext.Provider value={{ user, isPremium, login, logout, upgradeToPremium, isAuthenticated: !!user }}>
       {children}
     </AuthContext.Provider>
   );

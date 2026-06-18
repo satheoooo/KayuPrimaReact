@@ -185,10 +185,10 @@ function TreeCatalog() {
       <div className="text-center mt-10">
         <Link
           to="/catalog"
-          className="px-8 py-3 rounded-full border-2 border-[#2F5E2F] text-[#2F5E2F] font-medium hover:bg-[#2F5E2F] hover:text-white transition inline-flex items-center gap-2"
+          className="text-[#2F5E2F] font-medium hover:underline inline-flex items-center gap-2"
         >
           Lihat Selengkapnya
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </Link>
