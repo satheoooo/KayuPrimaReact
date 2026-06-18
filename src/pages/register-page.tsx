@@ -1,22 +1,33 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import Logo from "../components/logo";
 
-function LoginPage() {
+function RegisterPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleEmailLogin = async (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
-    if (!email || !password) {
-      setError("Email dan password harus diisi");
+    if (!name || !email || !password || !confirmPassword) {
+      setError("Semua field harus diisi");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Password tidak cocok");
+      return;
+    }
+
+    if (password.length < 8) {
+      setError("Password minimal 8 karakter");
       return;
     }
 
@@ -25,10 +36,10 @@ function LoginPage() {
     // Simulasi API call
     setTimeout(() => {
       login({
-        id: "1",
-        name: email.split("@")[0],
+        id: Date.now().toString(),
+        name: name,
         email: email,
-        avatar: `https://ui-avatars.com/api/?name=${email.split("@")[0]}&background=2F5E2F&color=fff`,
+        avatar: `https://ui-avatars.com/api/?name=${name.replace(/\s/g, "+")}&background=2F5E2F&color=fff`,
         provider: "email",
       });
       setIsLoading(false);
@@ -36,14 +47,13 @@ function LoginPage() {
     }, 1000);
   };
 
-  const handleGoogleLogin = () => {
+  const handleGoogleRegister = () => {
     setIsLoading(true);
 
-    // Simulasi Google OAuth
     setTimeout(() => {
       login({
-        id: "2",
-        name: "Satrio Putra",
+        id: Date.now().toString(),
+        name: "Satria Putra",
         email: "satria.putra@gmail.com",
         avatar: "https://ui-avatars.com/api/?name=Satria+Putra&background=2F5E2F&color=fff",
         provider: "google",
@@ -58,24 +68,24 @@ function LoginPage() {
       {/* Left Side - Form */}
       <div className="w-[500px] bg-white flex flex-col justify-center px-12">
         {/* Logo */}
-        <Link to="/" className="mb-10">
-          <Logo size="md" />
+        <Link to="/" className="text-[28px] font-bold text-[#2F5E2F] mb-10">
+          KayuPrima
         </Link>
 
         {/* Header */}
         <h1 className="text-[32px] font-bold text-[#2F5E2F] mb-2">
-          Masuk ke Akun Anda
+          Daftar Akun Baru
         </h1>
         <p className="text-[15px] text-[#4A4A4A] mb-8">
-          Belum punya akun?{" "}
-          <Link to="/register" className="text-[#2F5E2F] font-medium hover:underline">
-            Daftar sekarang
+          Sudah punya akun?{" "}
+          <Link to="/login" className="text-[#2F5E2F] font-medium hover:underline">
+            Masuk sekarang
           </Link>
         </p>
 
-        {/* Google Login Button */}
+        {/* Google Register Button */}
         <button
-          onClick={handleGoogleLogin}
+          onClick={handleGoogleRegister}
           disabled={isLoading}
           className="w-full flex items-center justify-center gap-3 px-4 py-3 border-2 border-gray-200 rounded-xl text-[15px] font-medium text-[#4A4A4A] hover:bg-gray-50 hover:border-gray-300 transition disabled:opacity-50 disabled:cursor-not-allowed mb-6"
         >
@@ -85,7 +95,7 @@ function LoginPage() {
             <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
             <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
           </svg>
-          {isLoading ? "Memproses..." : "Masuk dengan Google"}
+          {isLoading ? "Memproses..." : "Daftar dengan Google"}
         </button>
 
         {/* Divider */}
@@ -95,13 +105,26 @@ function LoginPage() {
           <div className="flex-1 h-px bg-gray-200"></div>
         </div>
 
-        {/* Email Form */}
-        <form onSubmit={handleEmailLogin}>
+        {/* Register Form */}
+        <form onSubmit={handleRegister}>
           {error && (
             <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-xl text-[14px] text-red-600">
               {error}
             </div>
           )}
+
+          <div className="mb-4">
+            <label className="block text-[14px] font-medium text-[#4A4A4A] mb-2">
+              Nama Lengkap
+            </label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Masukkan nama lengkap"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[15px] text-[#4A4A4A] focus:outline-none focus:border-[#2F5E2F] transition bg-gray-50"
+            />
+          </div>
 
           <div className="mb-4">
             <label className="block text-[14px] font-medium text-[#4A4A4A] mb-2">
@@ -116,7 +139,7 @@ function LoginPage() {
             />
           </div>
 
-          <div className="mb-6">
+          <div className="mb-4">
             <label className="block text-[14px] font-medium text-[#4A4A4A] mb-2">
               Password
             </label>
@@ -124,19 +147,32 @@ function LoginPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
+              placeholder="Minimal 8 karakter"
               className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[15px] text-[#4A4A4A] focus:outline-none focus:border-[#2F5E2F] transition bg-gray-50"
             />
           </div>
 
-          <div className="flex items-center justify-between mb-6">
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" className="w-4 h-4 accent-[#2F5E2F]" />
-              <span className="text-[14px] text-[#4A4A4A]">Ingat saya</span>
+          <div className="mb-6">
+            <label className="block text-[14px] font-medium text-[#4A4A4A] mb-2">
+              Konfirmasi Password
             </label>
-            <Link to="/forgot-password" className="text-[14px] text-[#2F5E2F] hover:underline">
-              Lupa password?
-            </Link>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Ulangi password"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[15px] text-[#4A4A4A] focus:outline-none focus:border-[#2F5E2F] transition bg-gray-50"
+            />
+          </div>
+
+          <div className="flex items-start gap-2 mb-6">
+            <input type="checkbox" className="w-4 h-4 mt-0.5 accent-[#2F5E2F]" />
+            <span className="text-[13px] text-[#4A4A4A]">
+              Saya menyetujui{" "}
+              <a href="#" className="text-[#2F5E2F] hover:underline">Syarat & Ketentuan</a>
+              {" "}dan{" "}
+              <a href="#" className="text-[#2F5E2F] hover:underline">Kebijakan Privasi</a>
+            </span>
           </div>
 
           <button
@@ -144,7 +180,7 @@ function LoginPage() {
             disabled={isLoading}
             className="w-full py-3 rounded-xl bg-[#2F5E2F] text-white text-[15px] font-medium hover:bg-[#244824] transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isLoading ? "Memproses..." : "Masuk"}
+            {isLoading ? "Memproses..." : "Daftar Sekarang"}
           </button>
         </form>
       </div>
@@ -152,18 +188,18 @@ function LoginPage() {
       {/* Right Side - Image */}
       <div className="flex-1 relative overflow-hidden">
         <img
-          src="https://images.pexels.com/photos/36965390/pexels-photo-36965390.png"
+          src="https://images.unsplash.com/photo-1542621334-a254cf47733d?w=1200&h=900&fit=crop"
           alt="Kayu Premium"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#2F5E2F]/80 to-transparent"></div>
         <div className="absolute top-1/2 left-16 -translate-y-1/2 max-w-[400px]">
           <h2 className="text-[36px] font-bold text-white mb-4 leading-tight">
-            Selamat Datang di KayuPrima
+            Mulai Jual Kayu Anda Sekarang
           </h2>
           <p className="text-[16px] text-white/90 leading-relaxed">
-            Akses katalog eksklusif, harga spesial, dan layanan prioritas
-            untuk mitra bisnis kami.
+            Daftar gratis dan dapatkan akses ke pembeli kayu terpercaya
+            di seluruh Indonesia.
           </p>
         </div>
       </div>
@@ -171,4 +207,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default RegisterPage;

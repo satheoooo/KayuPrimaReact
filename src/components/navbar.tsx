@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import Logo from "./logo";
 
 function Navbar() {
   const { user, isAuthenticated, logout } = useAuth();
@@ -8,8 +9,8 @@ function Navbar() {
 
   return (
     <nav className="flex justify-between items-center px-[160px] py-[18px] bg-white border-b border-gray-100">
-      <Link to="/" className="text-[22px] font-bold text-[#2F5E2F]">
-        KayuPrima
+      <Link to="/">
+        <Logo size="sm" />
       </Link>
 
       <div className="flex items-center gap-8">
