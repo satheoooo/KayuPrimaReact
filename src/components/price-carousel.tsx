@@ -1,14 +1,14 @@
 const woodPrices = [
-  { id: 1, name: "JATI", fullName: "Kayu Jati", price: "15.000.000", change: "+5.2%", isUp: true },
-  { id: 2, name: "MAHONI", fullName: "Kayu Mahoni", price: "8.000.000", change: "+2.1%", isUp: true },
-  { id: 3, name: "MERANTI", fullName: "Kayu Meranti", price: "5.000.000", change: "-1.3%", isUp: false },
-  { id: 4, name: "SUNGKAI", fullName: "Kayu Sungkai", price: "7.000.000", change: "+3.4%", isUp: true },
-  { id: 5, name: "SONOKELING", fullName: "Kayu Sonokeling", price: "12.000.000", change: "+4.1%", isUp: true },
-  { id: 6, name: "ULIN", fullName: "Kayu Ulin", price: "18.000.000", change: "+6.3%", isUp: true },
-  { id: 7, name: "BANGKIRAI", fullName: "Kayu Bangkirai", price: "9.500.000", change: "+1.8%", isUp: true },
-  { id: 8, name: "MENGGANI", fullName: "Kayu Menggani", price: "6.200.000", change: "-0.5%", isUp: false },
-  { id: 9, name: "CENDANA", fullName: "Kayu Cendana", price: "25.000.000", change: "+8.7%", isUp: true },
-  { id: 10, name: "CENGKEH", fullName: "Kayu Cengkeh", price: "4.800.000", change: "+1.2%", isUp: true },
+  { id: 1, name: "JATI", fullName: "Kayu Jati", price: "20.000.000", change: "+3.5%", isUp: true },
+  { id: 2, name: "MAHONI", fullName: "Kayu Mahoni", price: "15.000.000", change: "+2.8%", isUp: true },
+  { id: 3, name: "SONOKELING", fullName: "Kayu Sonokeling", price: "17.000.000", change: "+4.2%", isUp: true },
+  { id: 4, name: "ULIN", fullName: "Kayu Ulin", price: "22.000.000", change: "+5.1%", isUp: true },
+  { id: 5, name: "BANGKIRAI", fullName: "Kayu Bangkirai", price: "12.000.000", change: "+1.9%", isUp: true },
+  { id: 6, name: "MERANTI", fullName: "Kayu Meranti", price: "8.000.000", change: "-0.8%", isUp: false },
+  { id: 7, name: "SUNGKAI", fullName: "Kayu Sungkai", price: "6.500.000", change: "+1.2%", isUp: true },
+  { id: 8, name: "CENDANA", fullName: "Kayu Cendana", price: "35.000.000", change: "+6.8%", isUp: true },
+  { id: 9, name: "CENGKEH", fullName: "Kayu Cengkeh", price: "5.200.000", change: "+0.9%", isUp: true },
+  { id: 10, name: "MENGGANI", fullName: "Kayu Menggani", price: "7.800.000", change: "-0.3%", isUp: false },
 ];
 
 const duplicatedPrices = [...woodPrices, ...woodPrices, ...woodPrices];

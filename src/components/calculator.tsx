@@ -1,12 +1,13 @@
 import { useState } from "react";
 
 const woodTypes = [
-  { id: "jati", name: "Kayu Jati", pricePerCm3: 15000 },
-  { id: "mahoni", name: "Kayu Mahoni", pricePerCm3: 8000 },
-  { id: "meranti", name: "Kayu Meranti", pricePerCm3: 5000 },
-  { id: "sungkai", name: "Kayu Sungkai", pricePerCm3: 7000 },
-  { id: "sonokeling", name: "Kayu Sonokeling", pricePerCm3: 12000 },
-  { id: "ulin", name: "Kayu Ulin", pricePerCm3: 18000 },
+  { id: "jati", name: "Kayu Jati", pricePerM3: 20000000 },
+  { id: "mahoni", name: "Kayu Mahoni", pricePerM3: 15000000 },
+  { id: "meranti", name: "Kayu Meranti", pricePerM3: 8000000 },
+  { id: "sungkai", name: "Kayu Sungkai", pricePerM3: 6500000 },
+  { id: "sonokeling", name: "Kayu Sonokeling", pricePerM3: 17000000 },
+  { id: "ulin", name: "Kayu Ulin", pricePerM3: 22000000 },
+  { id: "bangkirai", name: "Kayu Bangkirai", pricePerM3: 12000000 },
 ];
 
 function Calculator() {
@@ -16,9 +17,10 @@ function Calculator() {
   const [quantity, setQuantity] = useState<number>(1);
 
   const selectedWood = woodTypes.find((w) => w.id === woodType);
-  const volume = width * height * 100;
-  const totalPrice = volume * (selectedWood?.pricePerCm3 || 0) * quantity;
-  const pricePerMeter = (selectedWood?.pricePerCm3 || 0) * 1000000;
+  // Volume in m³ (diameter cm x height cm x 100cm / 1,000,000)
+  const volumePerTreeM3 = (width * height * 100) / 1000000;
+  const totalPrice = volumePerTreeM3 * (selectedWood?.pricePerM3 || 0) * quantity;
+  const pricePerMeter = selectedWood?.pricePerM3 || 0;
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -55,7 +57,7 @@ function Calculator() {
         >
           {woodTypes.map((wood) => (
             <option key={wood.id} value={wood.id}>
-              {wood.name} - {formatPrice(wood.pricePerCm3 * 1000000)}/m³
+              {wood.name}
             </option>
           ))}
         </select>
@@ -111,7 +113,7 @@ function Calculator() {
         <div className="flex justify-between items-center mb-2">
           <span className="text-[14px] text-[#4A4A4A]">Volume per pohon</span>
           <span className="text-[14px] font-medium text-[#4A4A4A]">
-            {width && height ? `${(width * height * 100).toLocaleString("id-ID")} cm³` : "-"}
+            {width && height ? `${volumePerTreeM3.toFixed(4)} m³` : "-"}
           </span>
         </div>
         <div className="flex justify-between items-center mb-3">
