@@ -78,7 +78,12 @@ const trees = [
   },
 ];
 
+import { Link } from "react-router-dom";
+
 function TreeCatalog() {
+  // Tampilkan 3 card pertama saja di homepage
+  const displayedTrees = trees.slice(0, 3);
+
   return (
     <section className="px-[160px] py-[80px] bg-[#F9F9F9]">
       {/* Section Header */}
@@ -99,7 +104,7 @@ function TreeCatalog() {
 
       {/* Trees Grid */}
       <div className="grid grid-cols-3 gap-6">
-        {trees.map((tree) => (
+        {displayedTrees.map((tree) => (
           <div
             key={tree.id}
             className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition group"
@@ -178,12 +183,15 @@ function TreeCatalog() {
 
       {/* View All */}
       <div className="text-center mt-10">
-        <button className="px-8 py-3 rounded-full bg-[#2F5E2F] text-white font-medium hover:bg-[#244824] transition flex items-center gap-2 mx-auto">
+        <Link
+          to="/catalog"
+          className="px-8 py-3 rounded-full border-2 border-[#2F5E2F] text-[#2F5E2F] font-medium hover:bg-[#2F5E2F] hover:text-white transition inline-flex items-center gap-2"
+        >
+          Lihat Selengkapnya
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
-          Lihat Semua Jenis Kayu
-        </button>
+        </Link>
       </div>
     </section>
   );
