@@ -72,7 +72,7 @@ const buyers = [
 ];
 
 function BuyersPage() {
-  const { isAuthenticated, isPremium } = useAuth();
+  const { isPremium } = useAuth();
 
   // Belum premium → arahkan ke premium plan
   if (!isPremium) {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/navbar";
 
@@ -20,7 +20,6 @@ const packages = [
 
 function PremiumPage() {
   const { isAuthenticated, isPremium, upgradeToPremium } = useAuth();
-  const navigate = useNavigate();
   const [showSuccess, setShowSuccess] = useState(false);
 
   const handleDaftar = () => {
