@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const premiumBuyers = [
@@ -222,16 +223,12 @@ function PremiumBuyers() {
               <p className="text-[14px] text-gray-500 mb-4">
                 Dapatkan akses penuh ke kontak pembeli premium
               </p>
-              <div className="bg-[#F0F7F0] rounded-xl p-4 mb-6">
-                <p className="text-[24px] font-bold text-[#2F5E2F]">Rp 100.000</p>
-                <p className="text-[13px] text-gray-500">per bulan</p>
-              </div>
-              <a
-                href="/premium"
+              <Link
+                to="/premium"
                 className="block w-full py-3 bg-[#2F5E2F] text-white rounded-xl font-medium hover:bg-[#244824] transition text-center"
               >
                 Lihat Paket Premium
-              </a>
+              </Link>
               <button
                 onClick={() => setShowPremiumModal(false)}
                 className="mt-3 text-[14px] text-gray-400 hover:text-gray-600"

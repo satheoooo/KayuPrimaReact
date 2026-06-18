@@ -5,6 +5,8 @@ import LoginPage from "./pages/login-page";
 import RegisterPage from "./pages/register-page";
 import ForgotPasswordPage from "./pages/forgot-password-page";
 import CatalogPage from "./pages/catalog-page";
+import PremiumPage from "./pages/premium-page";
+import PremiumCalculatorPage from "./pages/premium-calculator-page";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route path="/catalog" element={<CatalogPage />} />
+      <Route path="/premium" element={<PremiumPage />} />
+      <Route path="/premium-calculator" element={<PremiumCalculatorPage />} />
     </Routes>
   );
 }
