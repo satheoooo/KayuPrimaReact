@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Calculator from "./calculator";
 import WoodParticles from "./wood-particles";
+import FloatingLeaves from "./floating-leaves";
 
 function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -41,6 +42,9 @@ function Hero() {
     >
       {/* 3D Wood Particles Background */}
       <WoodParticles />
+
+      {/* Floating Leaves */}
+      <FloatingLeaves />
 
       {/* Cursor Glow Effect */}
       <div

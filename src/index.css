@@ -77,6 +77,39 @@
   }
 }
 
+/* Floating Leaves Animations */
+@keyframes fall-leaf {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sway-leaf {
+  0%, 100% {
+    transform: translateX(0) rotateZ(0deg);
+  }
+  25% {
+    transform: translateX(15px) rotateZ(10deg);
+  }
+  50% {
+    transform: translateX(-10px) rotateZ(-5deg);
+  }
+  75% {
+    transform: translateX(20px) rotateZ(15deg);
+  }
+}
+
 /* Print Styles - Only show export content */
 @media print {
   body * {
