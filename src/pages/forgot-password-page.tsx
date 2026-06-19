@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Logo from "../components/logo";
 
 function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
@@ -28,10 +29,10 @@ function ForgotPasswordPage() {
   return (
     <div className="min-h-screen bg-[#F9F9F9] flex flex-col lg:flex-row">
       {/* Left Side - Form */}
-      <div className="w-full lg:w-[500px] bg-white flex flex-col justify-center px-6 md:px-12 py-10 lg:py-0">
+      <div className="w-full lg:w-[500px] bg-white flex flex-col justify-center px-6 md:px-12 py-10 lg:py-0 overflow-y-auto">
         {/* Logo */}
-        <Link to="/" className="text-[28px] font-bold text-[#2F5E2F] mb-10">
-          KayuPrima
+        <Link to="/" className="mb-8">
+          <Logo size="md" />
         </Link>
 
         {isSuccess ? (
@@ -139,7 +140,7 @@ function ForgotPasswordPage() {
       {/* Right Side - Image */}
       <div className="hidden lg:flex flex-1 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=1200&h=900&fit=crop"
+          src="https://images.unsplash.com/photo-1710080500863-626efc308aa4?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Kayu Premium"
           className="w-full h-full object-cover"
         />

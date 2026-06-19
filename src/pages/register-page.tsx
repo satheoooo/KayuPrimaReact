@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import Logo from "../components/logo";
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -66,10 +67,10 @@ function RegisterPage() {
   return (
     <div className="min-h-screen bg-[#F9F9F9] flex flex-col lg:flex-row">
       {/* Left Side - Form */}
-      <div className="w-full lg:w-[500px] bg-white flex flex-col justify-center px-6 md:px-12 py-10 lg:py-0">
+      <div className="w-full lg:w-[500px] bg-white flex flex-col justify-center px-6 md:px-12 py-10 lg:py-0 overflow-y-auto">
         {/* Logo */}
-        <Link to="/" className="text-[28px] font-bold text-[#2F5E2F] mb-10">
-          KayuPrima
+        <Link to="/" className="mb-8">
+          <Logo size="md" />
         </Link>
 
         {/* Header */}
@@ -186,11 +187,11 @@ function RegisterPage() {
       </div>
 
       {/* Right Side - Image */}
-      <div className="hidden lg:flex flex-1 relative overflow-hidden">
+      <div className="hidden lg:block flex-1 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1542621334-a254cf47733d?w=1200&h=900&fit=crop"
+          src="https://images.unsplash.com/photo-1710598894107-0892c12e5851?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Kayu Premium"
-          className="w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#2F5E2F]/80 to-transparent"></div>
         <div className="absolute top-1/2 left-16 -translate-y-1/2 max-w-[400px]">
