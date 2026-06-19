@@ -39,3 +39,24 @@
 .animate-ticker {
   will-change: transform;
 }
+
+/* Print Styles - Only show export content */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #export-content,
+  #export-content * {
+    visibility: visible;
+  }
+
+  #export-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 40px;
+    background: white;
+  }
+}

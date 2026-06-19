@@ -327,49 +327,57 @@ function PremiumCalculatorPage() {
               <h3 className="text-[20px] font-bold text-[#2F5E2F] mb-5">Export Hasil Kalkulasi</h3>
 
               <div className="bg-gray-50 rounded-xl p-5 mb-5" id="export-content">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#2F5E2F]/10 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-[#2F5E2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                {/* Header for print */}
+                <div className="flex items-center gap-3 mb-5 pb-4 border-b border-gray-200">
+                  <div className="w-10 h-10 rounded-xl bg-[#2F5E2F] flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-[16px] font-bold text-[#2F5E2F]">Ringkasan Kalkulasi</h4>
-                    <p className="text-[13px] text-gray-500">KayuPrima Premium Calculator</p>
+                    <h4 className="text-[16px] font-bold text-[#2F5E2F]">KayuPrima</h4>
+                    <p className="text-[12px] text-gray-500">Ringkasan Kalkulasi Harga Kayu</p>
                   </div>
                 </div>
 
-                <div className="space-y-2 text-[14px]">
-                  <div className="flex justify-between">
+                <div className="space-y-3 text-[14px]">
+                  <div className="flex justify-between py-1">
                     <span className="text-gray-500">Jenis Kayu</span>
                     <span className="font-medium text-[#4A4A4A]">{selectedWood?.name || "-"}</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between py-1">
                     <span className="text-gray-500">Diameter</span>
                     <span className="font-medium text-[#4A4A4A]">{width ? `${width} cm` : "-"}</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between py-1">
                     <span className="text-gray-500">Tinggi</span>
                     <span className="font-medium text-[#4A4A4A]">{height ? `${height} cm` : "-"}</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between py-1">
                     <span className="text-gray-500">Jumlah Pohon</span>
                     <span className="font-medium text-[#4A4A4A]">{quantity}</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between py-1">
                     <span className="text-gray-500">Volume per Pohon</span>
                     <span className="font-medium text-[#4A4A4A]">{width && height ? `${volumePerTreeM3.toFixed(4)} m³` : "-"}</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between py-1">
                     <span className="text-gray-500">Harga per m³</span>
                     <span className="font-medium text-[#4A4A4A]">{formatPrice(selectedWood?.pricePerM3 || 0)}</span>
                   </div>
-                  <div className="border-t border-gray-200 pt-2 mt-2 flex justify-between">
-                    <span className="font-bold text-[#2F5E2F]">Total Estimasi</span>
-                    <span className="font-bold text-[#2F5E2F] text-[16px]">
+                  <div className="border-t-2 border-[#2F5E2F] pt-3 mt-3 flex justify-between">
+                    <span className="font-bold text-[#2F5E2F] text-[15px]">Total Estimasi Harga Jual</span>
+                    <span className="font-bold text-[#2F5E2F] text-[17px]">
                       {width && height && quantity ? formatPrice(totalPrice) : formatPrice(0)}
                     </span>
                   </div>
+                </div>
+
+                {/* Footer for print */}
+                <div className="mt-6 pt-4 border-t border-gray-200 text-center">
+                  <p className="text-[11px] text-gray-400">
+                    Dihitung pada {new Date().toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })} • KayuPrima Premium Calculator
+                  </p>
                 </div>
               </div>
 
