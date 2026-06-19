@@ -315,4 +315,3 @@ git push origin feat/catalog-detail-page
 
 ---
 
-*Brief ini dibuat oleh Claude untuk project KayuPrima*

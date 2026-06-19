@@ -225,5 +225,3 @@ git push origin feat/catalog-page
 - [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 
 ---
-
-*Brief ini dibuat oleh Claude untuk project KayuPrima*
