@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Calculator from "./calculator";
+import WoodParticles from "./wood-particles";
 
 function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -36,8 +37,11 @@ function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative flex flex-col lg:flex-row items-center justify-between px-4 md:px-8 lg:px-[160px] py-12 md:py-16 lg:py-[80px] bg-white overflow-hidden"
+      className="relative flex flex-col lg:flex-row items-center justify-between px-4 md:px-8 lg:px-[160px] py-12 md:py-16 lg:py-[80px] bg-gradient-to-br from-white via-[#F0F7F0] to-white overflow-hidden"
     >
+      {/* 3D Wood Particles Background */}
+      <WoodParticles />
+
       {/* Cursor Glow Effect */}
       <div
         className="absolute pointer-events-none transition-opacity duration-300"
