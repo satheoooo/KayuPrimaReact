@@ -15,12 +15,12 @@ const woodTypes = [
 
 // Data tren harga (6 bulan terakhir, dalam jutaan per m³)
 const priceHistory = [
-  { month: "Jan", jati: 18.5, mahoni: 13.5, meranti: 7.5 },
-  { month: "Feb", jati: 19.0, mahoni: 14.0, meranti: 7.8 },
-  { month: "Mar", jati: 19.2, mahoni: 14.2, meranti: 7.6 },
-  { month: "Apr", jati: 19.5, mahoni: 14.5, meranti: 7.9 },
-  { month: "Mei", jati: 19.8, mahoni: 14.8, meranti: 8.0 },
-  { month: "Jun", jati: 20.0, mahoni: 15.0, meranti: 8.0 },
+  { month: "Jan", jati: 18.5, mahoni: 13.5, meranti: 7.5, sungkai: 5.8, sonokeling: 15.5, ulin: 20.0, bangkirai: 10.5 },
+  { month: "Feb", jati: 19.0, mahoni: 14.0, meranti: 7.8, sungkai: 6.0, sonokeling: 16.0, ulin: 20.5, bangkirai: 11.0 },
+  { month: "Mar", jati: 19.2, mahoni: 14.2, meranti: 7.6, sungkai: 6.1, sonokeling: 16.2, ulin: 21.0, bangkirai: 11.2 },
+  { month: "Apr", jati: 19.5, mahoni: 14.5, meranti: 7.9, sungkai: 6.2, sonokeling: 16.5, ulin: 21.5, bangkirai: 11.5 },
+  { month: "Mei", jati: 19.8, mahoni: 14.8, meranti: 8.0, sungkai: 6.3, sonokeling: 16.8, ulin: 21.8, bangkirai: 11.8 },
+  { month: "Jun", jati: 20.0, mahoni: 15.0, meranti: 8.0, sungkai: 6.5, sonokeling: 17.0, ulin: 22.0, bangkirai: 12.0 },
 ];
 
 const formatPrice = (price: number) => {
@@ -271,28 +271,29 @@ function PremiumCalculatorPage() {
               {/* Wood selector */}
               <div className="mb-6">
                 <label className="block text-[14px] font-medium text-[#4A4A4A] mb-2">Pilih Jenis Kayu</label>
-                <div className="flex gap-2">
-                  {["jati", "mahoni", "meranti"].map((w) => (
+                <div className="flex flex-wrap gap-2">
+                  {woodTypes.map((w) => (
                     <button
-                      key={w}
-                      onClick={() => setSelectedChartWood(w)}
-                      className={`px-4 py-2 rounded-lg text-[13px] font-medium transition ${
-                        selectedChartWood === w
+                      key={w.id}
+                      onClick={() => setSelectedChartWood(w.id)}
+                      className={`px-3 py-1.5 rounded-lg text-[12px] font-medium transition ${
+                        selectedChartWood === w.id
                           ? "bg-[#2F5E2F] text-white"
                           : "bg-gray-100 text-[#4A4A4A] hover:bg-gray-200"
                       }`}
                     >
-                      {woodTypes.find((wt) => wt.id === w)?.name}
+                      {w.name}
                     </button>
                   ))}
                 </div>
               </div>
 
               {/* Bar Chart */}
-              <div className="flex items-end gap-3 h-[220px] px-2">
+              <div className="flex items-end gap-2 sm:gap-3 h-[220px] px-2">
                 {priceHistory.map((entry, i) => {
                   const price = entry[selectedChartWood as keyof typeof entry] as number;
-                  const barHeight = (price / 25) * 100;
+                  const maxPrice = Math.max(...priceHistory.map((h) => h[selectedChartWood as keyof typeof h] as number));
+                  const barHeight = (price / (maxPrice * 1.1)) * 100;
                   return (
                     <div key={i} className="flex-1 flex flex-col items-center gap-2">
                       <span className="text-[12px] font-bold text-[#2F5E2F]">{price}jt</span>
