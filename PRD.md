@@ -1,9 +1,9 @@
 # Product Requirements Document (PRD)
 ## KayuPrima — Marketplace Kayu Indonesia
 
-**Versi:** 1.0  
-**Tanggal:** 18 Juni 2026  
-**Status:** Frontend MVP  
+**Versi:** 1.1
+**Tanggal:** 19 Juni 2026
+**Status:** Frontend MVP
 
 ---
 
@@ -65,14 +65,14 @@ Seluruh UI dan UX dirancang dari **perspektif penjual kayu** yang mencari calon 
 
 | Route | Nama Halaman | Status | Akses |
 |-------|-------------|--------|-------|
-| `/` | Beranda | ✅ Lengkap | Public |
-| `/login` | Masuk | ✅ Lengkap | Public |
-| `/register` | Daftar | ✅ Lengkap | Public |
-| `/forgot-password` | Lupa Password | ✅ Lengkap | Public |
+| `/` | Beranda | ✅ Lengkap + Responsive | Public |
+| `/login` | Masuk | ✅ Lengkap + Responsive | Public |
+| `/register` | Daftar | ✅ Lengkap + Responsive | Public |
+| `/forgot-password` | Lupa Password | ✅ Lengkap + Responsive | Public |
 | `/catalog` | Katalog Pohon | ⚠️ Placeholder | Public |
-| `/premium` | Premium Plan | ✅ Lengkap | Public (upgrade di dalam) |
-| `/pembeli-premium` | Calon Pembeli | ✅ Lengkap | Premium Only |
-| `/premium-calculator` | Kalkulator Premium | ✅ Lengkap | Login + Premium |
+| `/premium` | Premium Plan | ✅ Lengkap + Responsive | Public (upgrade di dalam) |
+| `/pembeli-premium` | Calon Pembeli | ✅ Lengkap + Responsive | Premium Only |
+| `/premium-calculator` | Kalkulator Premium | ✅ Lengkap + Responsive | Login + Premium |
 
 ### 4.2 Rincian Per Halaman
 
@@ -80,8 +80,8 @@ Seluruh UI dan UX dirancang dari **perspektif penjual kayu** yang mencari calon 
 Halaman utama yang menampilkan seluruh nilai produk KayuPrima.
 
 **Section:**
-1. **Navbar** — Navigasi, auth check, badge premium, dropdown profile
-2. **Hero** — Headline, subtext, 3 fitur unggulan, kalkulator pohon (gratis)
+1. **Navbar** — Navigasi, auth check, badge premium, dropdown profile, mobile hamburger menu
+2. **Hero** — Headline, subtext, 3 fitur unggulan, kalkulator pohon (gratis), **3D Floating Wood Particles animation**
 3. **Price Ticker** — Marquee harga kayu real-time (10 jenis kayu, animasi scroll)
 4. **Pembeli Premium** — Preview 2 pembeli premium (blur untuk non-premium)
 5. **Katalog Pohon** — 3 kartu pertama dari 7 jenis kayu
@@ -171,7 +171,7 @@ Halaman login-only dengan 4 fitur utama:
    - Tampilkan selisih harga per m³
 
 3. **Grafik Tren Harga** (kolom kanan atas)
-   - Pilih jenis kayu: Jati, Mahoni, atau Meranti
+   - Pilih jenis kayu: **Semua 7 jenis** (Jati, Mahoni, Meranti, Sungkai, Sonokeling, Ulin, Bangkirai)
    - Bar chart 6 bulan terakhir
    - Indikator tren naik/turun (persentase)
 
@@ -274,15 +274,17 @@ Login, Sudah Premium → Klik "Kalkulator Premium" → /premium-calculator
 
 | Komponen | Deskripsi |
 |----------|-----------|
-| `Navbar` | Navigasi atas + auth modal + premium badge |
-| `Logo` | SVG logo KayuPrima (sm/md/lg) |
+| `Navbar` | Navigasi atas + auth modal + premium badge + **mobile hamburger menu** |
+| `Logo` | SVG logo KayuPrima (sm/md/lg) — digunakan di navbar & auth pages |
 | `Footer` | 4 kolom: info, tautan, kontak, newsletter |
+| `Favicon` | SVG logo pohon KayuPrima (bukan logo Vite default) |
 
 ### 7.2 Komponen Homepage
 
 | Komponen | Deskripsi |
 |----------|-----------|
-| `Hero` | Headline + kalkulator + cursor glow effect |
+| `Hero` | Headline + kalkulator + cursor glow effect + **3D Wood Particles** |
+| `WoodParticles` | Animasi 3D partikel kayu melayang (25 partikel + 8 blok + 6 decorative circles) |
 | `Calculator` | Kalkulator pohon (gratis) — 7 jenis kayu |
 | `PriceTicker` | Marquee harga kayu (10 jenis, animasi) |
 | `PremiumBuyers` | Preview pembeli premium (blur overlay) |
@@ -298,15 +300,15 @@ Login, Sudah Premium → Klik "Kalkulator Premium" → /premium-calculator
 | `BuyersPage` | Daftar calon pembeli + WhatsApp |
 | `PremiumCalculatorPage` | Kalkulator + perbandingan + grafik + export |
 
-### 7.4 Komponen Empty (Belum Diimplementasi)
+### 7.4 Komponen yang Dihapus
 
 | File | Status |
 |------|--------|
-| `buyer-card.tsx` | Kosong |
-| `wood-card.tsx` | Kosong |
-| `login-modal.tsx` | Kosong |
-| `premium-section.tsx` | Kosong |
-| `featured-products.tsx` | Ada tapi tidak dipakai |
+| `buyer-card.tsx` | ❌ Dihapus (19 Juni 2026) |
+| `wood-card.tsx` | ❌ Dihapus (19 Juni 2026) |
+| `login-modal.tsx` | ❌ Dihapus (19 Juni 2026) |
+| `premium-section.tsx` | ❌ Dihapus (19 Juni 2026) |
+| `featured-products.tsx` | ❌ Dihapus (19 Juni 2026) |
 
 ---
 
@@ -375,12 +377,17 @@ Total Harga = Volume per pohon × Harga per m³ × Jumlah Pohon
 
 Menggunakan `Intl.NumberFormat` dengan locale `id-ID` dan mata uang IDR.
 
+### 9.4 Custom Dropdown
+
+Semua `<select>` element menggunakan custom SVG arrow icon dengan padding kanan (`pr-10`) untuk tampilan yang lebih rapi.
+
 ---
 
 ## 10. Animasi & Efek
 
 | Efek | Lokasi | Deskripsi |
 |------|--------|-----------|
+| **3D Floating Wood Particles** | Hero | Partikel kayu 3D melayang dengan rotasi (25 partikel + 8 blok besar) |
 | Cursor Glow | Hero | Radial gradient mengikuti kursor mouse |
 | Infinite Scroll | PriceTicker, BrandLogos | CSS `animate-scroll` / `animate-ticker` |
 | Hover Scale | Gambar kartu | `hover:scale-105` pada gambar |
@@ -391,28 +398,39 @@ Menggunakan `Intl.NumberFormat` dengan locale `id-ID` dan mata uang IDR.
 
 ## 11. Responsive Design
 
-**Status: Belum diimplementasi**
+**Status: ✅ Sudah diimplementasi**
 
-Semua layout menggunakan pixel values hardcoded (contoh: `px-[160px]`). Belum ada breakpoint atau responsive adjustments.
+| Breakpoint | Deskripsi |
+|------------|-----------|
+| Mobile | `< 768px` — 1 kolom, padding kecil |
+| Tablet | `768px - 1024px` — 2 kolom, padding sedang |
+| Desktop | `> 1024px` — 3+ kolom, padding penuh |
+
+**Yang sudah responsive:**
+- Navbar dengan hamburger menu mobile
+- Semua halaman (homepage, premium, buyers, calculator, auth)
+- Grid layouts (1→2→3 kolom)
+- Auth pages (split layout: form full-width di mobile, image hidden)
+- Padding global: `px-4 md:px-8 lg:px-[160px]`
 
 ---
 
 ## 12. Yang Belum Dikerjakan (Backlog)
 
 ### Prioritas Tinggi
-- [ ] Implementasi halaman `/catalog` (katalog lengkap dengan filter & search)
-- [ ] Responsive design untuk mobile & tablet
-- [ ] Hapus komponen kosong: `buyer-card.tsx`, `wood-card.tsx`, `login-modal.tsx`, `premium-section.tsx`
-- [ ] Hapus atau gunakan `featured-products.tsx`
+- [x] ~~Implementasi halaman `/catalog`~~ (sedang dikerjakan - Alliya)
+- [x] ~~Responsive design untuk mobile & tablet~~ ✅ (19 Juni 2026)
+- [x] ~~Hapus komponen kosong~~ ✅ (19 Juni 2026)
+- [x] ~~Hapus atau gunakan `featured-products.tsx`~~ ✅ (19 Juni 2026)
 
 ### Prioritas Menengah
 - [ ] Backend API untuk auth (register, login, session)
 - [ ] Database untuk data kayu, pembeli, dan harga
 - [ ] Integrasi payment gateway untuk premium (Midtrans/Xendit)
-- [ ] Halaman detail katalog per jenis kayu (`/catalog/:id`)
+- [ ] Halaman detail katalog per jenis kayu (`/catalog/:id`) - sedang dikerjakan (Farel)
 
 ### Prioritas Rendah
-- [ ] Push semua commit ke GitHub
+- [x] ~~Push semua commit ke GitHub~~ ✅
 - [ ] PWA (Progressive Web App) untuk akses offline
 - [ ] Multi-bahasa (Indonesia + English)
 - [ ] Push notifikasi untuk harga kayu berubah
@@ -426,8 +444,19 @@ Semua layout menggunakan pixel values hardcoded (contoh: `px-[160px]`). Belum ad
 - **SSH Key:** `~/.ssh/id_ed25519` (sudah ter-setup)
 - **Remote:** `git@github.com:satheoooo/KayuPrimaReact.git`
 - **Branch:** `main`
-- **Status:** Beberapa commit mungkin belum terpush
+- **Status:** Semua commit sudah terpush
+
+### Commit Terakhir
+| Hash | Message | Tanggal |
+|------|---------|---------|
+| `cb89df5` | update: perbaiki logo & gambar halaman register & forgot password | 19 Juni 2026 |
+| `5d2d981` | revert: hapus animasi floating leaves, sisakan wood particles saja | 19 Juni 2026 |
+| `9299f46` | feat: tambah animasi floating leaves di hero section | 19 Juni 2026 |
+| `6f589ca` | feat: tambah animasi 3D floating wood particles di hero section | 19 Juni 2026 |
+| `04b77b9` | feat: grafik tren harga untuk semua 7 jenis kayu | 19 Juni 2026 |
+| `a80bb3d` | feat: export PDF hanya tampilkan hasil kalkulasi | 19 Juni 2026 |
+| `6956980` | feat: hapus komponen kosong & tambahkan responsive design mobile/tablet | 19 Juni 2026 |
 
 ---
 
-*Document generated by Claude — 18 Juni 2026*
+*Document generated by Claude — 19 Juni 2026*

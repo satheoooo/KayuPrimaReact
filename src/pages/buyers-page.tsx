@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useBuyer } from "../context/BuyerContext";
 import Navbar from "../components/navbar";
 
-const buyers = [
+const hardcodedBuyers = [
   {
     id: 1,
     name: "PT Maju Jaya",
@@ -73,6 +74,27 @@ const buyers = [
 
 function BuyersPage() {
   const { isPremium } = useAuth();
+  const { buyerProfile } = useBuyer();
+
+  // Gabungkan data hardcoded dengan profile buyer dari localStorage
+  const allBuyers = [
+    ...hardcodedBuyers,
+    ...(buyerProfile?.companyName
+      ? [
+          {
+            id: parseInt(buyerProfile.id) || 999,
+            name: buyerProfile.companyName,
+            location: buyerProfile.location || "Indonesia",
+            woodNeeded: buyerProfile.woodNeeded.join(", ") || "Semua jenis",
+            quantity: buyerProfile.quantity || "-",
+            budget: buyerProfile.budget || "-",
+            avatar: buyerProfile.avatar,
+            whatsapp: buyerProfile.whatsapp,
+            isPremium: buyerProfile.isPremium,
+          },
+        ]
+      : []),
+  ].sort((a, b) => (b.isPremium ? 1 : 0) - (a.isPremium ? 1 : 0));
 
   // Belum premium → arahkan ke premium plan
   if (!isPremium) {
@@ -121,12 +143,12 @@ function BuyersPage() {
           </div>
           <div className="flex items-center gap-4">
             <div className="text-center">
-              <p className="text-[24px] font-bold text-white">{buyers.length}</p>
+              <p className="text-[24px] font-bold text-white">{allBuyers.length}</p>
               <p className="text-[12px] text-white/70">Total Pembeli</p>
             </div>
             <div className="w-px h-10 bg-white/30"></div>
             <div className="text-center">
-              <p className="text-[24px] font-bold text-yellow-300">{buyers.filter((b) => b.isPremium).length}</p>
+              <p className="text-[24px] font-bold text-yellow-300">{allBuyers.filter((b) => b.isPremium).length}</p>
               <p className="text-[12px] text-white/70">Premium</p>
             </div>
           </div>
@@ -136,7 +158,7 @@ function BuyersPage() {
       {/* Buyers Grid */}
       <section className="px-4 md:px-8 lg:px-[160px] py-8 md:py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {buyers.map((buyer) => (
+          {allBuyers.map((buyer) => (
             <div
               key={buyer.id}
               className={`rounded-2xl p-6 overflow-hidden ${
