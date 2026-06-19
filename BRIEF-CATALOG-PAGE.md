@@ -1,6 +1,6 @@
 # Brief: Halaman Katalog Produk KayuPrima
 
-**Untuk:** Tim developer (pemula)
+**Untuk:** Alliya
 **Project:** KayuPrima - Marketplace Kayu Indonesia
 **Branch:** `feat/catalog-page`
 
