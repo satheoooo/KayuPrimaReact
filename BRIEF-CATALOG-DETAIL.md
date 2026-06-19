@@ -3,6 +3,7 @@
 **Untuk:** Farel
 **Project:** KayuPrima - Marketplace Kayu Indonesia
 **Branch:** `feat/catalog-detail-page`
+**Terakhir diupdate:** 19 Juni 2026
 
 ---
 
@@ -59,6 +60,11 @@ git checkout -b feat/catalog-detail-page
 - **Text Secondary:** `#4A4A4A`
 - **Background:** `#F9F9F9`
 
+### Responsive Breakpoints
+- Mobile: `< 768px` → `px-5`
+- Tablet: `768px - 1024px` → `md:px-10`
+- Desktop: `> 1024px` → `lg:px-[160px]`
+
 ---
 
 ## 3. Yang Harus Dikerjakan
@@ -81,6 +87,18 @@ Data kayu sudah ada di `src/components/tree-catalog.tsx` — 7 jenis kayu:
 | sonokeling | Kayu Sonokeling | Dalbergia latifolia | Rp 17.000.000 |
 | ulin | Kayu Ulin | Eusideroxylon zwageri | Rp 22.000.000 |
 | bangkirai | Kayu Bangkirai | Shorea balangeran | Rp 12.000.000 |
+
+### Komponen yang Sudah Ada (bisa dipakai)
+- `src/components/navbar.tsx` — Navbar dengan 3 state (seller, buyer, logged out)
+- `src/components/logo.tsx` — Logo KayuPrima (sm/md/lg)
+- `src/components/footer.tsx` — Footer 4 kolom responsive
+
+### Yang Sudah di-Implementasi
+- ✅ Responsive design (mobile/tablet/desktop)
+- ✅ Login/Register seller
+- ✅ Login/Register pembeli (`/buyer/login`, `/buyer/register`)
+- ✅ Beranda pembeli (`/buyer/profile`)
+- ✅ Premium seller & buyer
 
 ---
 

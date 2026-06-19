@@ -1,7 +1,7 @@
 # Product Requirements Document (PRD)
 ## KayuPrima — Marketplace Kayu Indonesia
 
-**Versi:** 1.1
+**Versi:** 1.2
 **Tanggal:** 19 Juni 2026
 **Status:** Frontend MVP
 
@@ -21,7 +21,8 @@ Menjadi platform #1 di Indonesia untuk transaksi kayu yang transparan, adil, dan
 | **Pembeli Kayu** | Perusahaan meubel, kontraktor, pengrajin, atau industri yang membutuhkan suplai kayu |
 
 ### Point of View
-Seluruh UI dan UX dirancang dari **perspektif penjual kayu** yang mencari calon pembeli.
+- **Seller:** Seluruh UI dan UX dirancang dari perspektif penjual kayu yang mencari calon pembeli
+- **Buyer:** Pembeli memiliki dashboard sendiri untuk mengatur kebutuhan kayu
 
 ---
 
@@ -42,6 +43,7 @@ Seluruh UI dan UX dirancang dari **perspektif penjual kayu** yang mencari calon 
 - **Auth simulasi** — menggunakan Context + localStorage
 - **Data hardcoded** — semua data kayu, pembeli, dan harga masih statis
 - **Tidak ada fitur chat** — untuk mencegah kecurangan, komunikasi via WhatsApp langsung
+- **Responsive design** — mobile, tablet, dan desktop
 
 ---
 
@@ -73,6 +75,10 @@ Seluruh UI dan UX dirancang dari **perspektif penjual kayu** yang mencari calon 
 | `/premium` | Premium Plan | ✅ Lengkap + Responsive | Public (upgrade di dalam) |
 | `/pembeli-premium` | Calon Pembeli | ✅ Lengkap + Responsive | Premium Only |
 | `/premium-calculator` | Kalkulator Premium | ✅ Lengkap + Responsive | Login + Premium |
+| `/buyer/login` | Masuk Pembeli | ✅ Lengkap + Responsive | Public |
+| `/buyer/register` | Daftar Pembeli | ✅ Lengkap + Responsive | Public |
+| `/buyer/profile` | Beranda Pembeli | ✅ Lengkap + Responsive | Buyer Auth |
+| `/buyer/premium` | Premium Pembeli | ✅ Lengkap + Responsive | Buyer Auth |
 
 ### 4.2 Rincian Per Halaman
 
@@ -111,21 +117,22 @@ Halaman utama yang menampilkan seluruh nilai produk KayuPrima.
 - **Status: Placeholder** — baru menampilkan judul
 - **Rencana:** Grid katalog lengkap semua jenis kayu dengan filter, search, detail
 
-#### 4.2.6 Premium Plan (`/premium`)
-Tiga tampilan tergantung status user:
+#### 4.2.6 Premium Plan Seller (`/premium`)
+Layout 2 kartu (Free vs Premium):
 
 | Status | Tampilan |
 |--------|----------|
-| Belum login | Halaman paket + tombol "Login untuk Daftar" (disabled) |
-| Login, belum premium | Halaman paket + benefit list + tombol "Daftar Sekarang" |
-| Sudah premium | Status "Kamu Sudah Premium!" + 3 button navigasi |
+| Belum login | Tombol "Login untuk Daftar" |
+| Login, belum premium | 2 kartu paket + tombol "Upgrade ke Premium" |
+| Sudah premium | Status "Kamu Sudah Premium!" + tombol kembali |
 
-**Setelah daftar premium → Success Page:**
-- Pesan: "Selamat! Kamu Premium! 🎉"
-- 3 button:
-  1. Kembali ke Beranda
-  2. Cek Pembeli Premium → `/pembeli-premium`
-  3. Cek Kalkulator Premium → `/premium-calculator`
+**Benefit Premium Seller:**
+- Lihat semua calon pembeli
+- Chat via WhatsApp langsung
+- Kalkulator harga perbandingan
+- Grafik tren harga kayu
+- Export hasil kalkulasi
+- Harga: Rp 149.000/bulan
 
 #### 4.2.7 Calon Pembeli (`/pembeli-premium`)
 Halaman premium-only yang menampilkan daftar calon pembeli.
@@ -183,7 +190,7 @@ Halaman login-only dengan 4 fitur utama:
 
 ## 5. Sistem Autentikasi
 
-### 5.1 Model Data User
+### 5.1 Model Data User (Seller)
 
 ```typescript
 interface User {
@@ -195,7 +202,26 @@ interface User {
 }
 ```
 
-### 5.2 Auth Context
+### 5.2 Model Data Buyer
+
+```typescript
+interface BuyerProfile {
+  id: string;
+  companyName: string;
+  email: string;
+  location: string;
+  woodNeeded: string[];  // ["jati", "mahoni"]
+  quantity: string;       // "50 m³"
+  budget: string;         // "Rp 750.000.000"
+  whatsapp: string;       // "6281234567890"
+  description: string;
+  avatar: string;
+  isPremium: boolean;
+  createdAt: string;
+}
+```
+
+### 5.3 Auth Context (Seller)
 
 | Field/Action | Tipe | Deskripsi |
 |-------------|------|-----------|
@@ -206,11 +232,24 @@ interface User {
 | `logout()` | function | Hapus user + reset premium |
 | `upgradeToPremium()` | function | Set `isPremium = true` + simpan ke localStorage |
 
-### 5.3 Persistensi
-- `kayuprima_user` → JSON string data user
-- `kayuprima_premium` → string "true" atau tidak ada
+### 5.4 Buyer Context
 
-### 5.4 Flow Autentikasi
+| Field/Action | Tipe | Deskripsi |
+|-------------|------|-----------|
+| `buyerProfile` | `BuyerProfile \| null` | Data profile buyer |
+| `isBuyerAuthenticated` | `boolean` | Derived: `!!buyerProfile` |
+| `isBuyerPremium` | `boolean` | Status premium buyer |
+| `loginBuyer(email, name)` | function | Login buyer |
+| `logoutBuyer()` | function | Logout buyer |
+| `saveProfile(data)` | function | Simpan profile ke localStorage |
+| `upgradeToBuyerPremium()` | function | Set buyer premium |
+
+### 5.5 Persistensi
+- `kayuprima_user` → JSON string data user (seller)
+- `kayuprima_premium` → string "true" atau tidak ada (seller)
+- `kayuprima_buyer_profile` → JSON string data buyer
+
+### 5.6 Flow Autentikasi Seller
 
 ```
 Belum Login → Klik Fitur Premium → Modal "Masuk ke KayuPrima" → /login
@@ -219,11 +258,20 @@ Login, Sudah Premium → Klik "Pembeli Premium" → /pembeli-premium
 Login, Sudah Premium → Klik "Kalkulator Premium" → /premium-calculator
 ```
 
+### 5.7 Flow Autentikasi Buyer
+
+```
+Belum Login → Klik "Masuk sebagai Pembeli" → /buyer/login
+Belum Login → Klik "Daftar" → /buyer/register
+Login → Redirect ke /buyer/profile (Beranda Pembeli)
+Login → Klik "Upgrade Premium" → /buyer/premium
+```
+
 ---
 
 ## 6. Sistem Premium
 
-### 6.1 Free Plan
+### 6.1 Free Plan (Seller)
 
 | Fitur | Akses |
 |-------|-------|
@@ -234,7 +282,7 @@ Login, Sudah Premium → Klik "Kalkulator Premium" → /premium-calculator
 | Chat pembeli via WhatsApp | ❌ |
 | Kalkulator Premium | ❌ |
 
-### 6.2 Premium Plan
+### 6.2 Premium Plan (Seller)
 
 | Fitur | Akses |
 |-------|-------|
@@ -245,8 +293,31 @@ Login, Sudah Premium → Klik "Kalkulator Premium" → /premium-calculator
 | Perbandingan harga | ✅ |
 | Grafik tren harga | ✅ |
 | Export hasil kalkulasi | ✅ |
+| **Harga** | **Rp 149.000/bulan** |
 
-### 6.3 Akses Premium Plan
+### 6.3 Free Plan (Buyer)
+
+| Fitur | Akses |
+|-------|-------|
+| Profil tampil di daftar pembeli | ✅ |
+| Dihubungi penjual via WhatsApp | ✅ |
+| Badge PREMIUM | ❌ |
+| Tampil di paling atas | ❌ |
+| Highlight warna emas | ❌ |
+
+### 6.4 Premium Plan (Buyer)
+
+| Fitur | Akses |
+|-------|-------|
+| Semua fitur Free | ✅ |
+| Badge PREMIUM mencolok | ✅ |
+| Tampil di paling atas daftar | ✅ |
+| Highlight warna emas di kartu | ✅ |
+| Lebih mudah ditemukan penjual | ✅ |
+| Prioritas tampil di halaman utama | ✅ |
+| **Harga** | **Rp 99.000/bulan** |
+
+### 6.5 Akses Premium Plan
 
 | Akses | Deskripsi |
 |-------|-----------|
@@ -330,8 +401,9 @@ Login, Sudah Premium → Klik "Kalkulator Premium" → /premium-calculator
 
 Termasuk: Jati, Mahoni, Sonokeling, Ulin, Bangkirai, Meranti, Sungkai, Cendana, Cengkeh, Menggani
 
-### 8.3 Data Pembeli (6)
+### 8.3 Data Pembeli (6 hardcoded + dari localStorage)
 
+**Hardcoded:**
 | Nama | Lokasi | Kayu | Jumlah | Budget | Premium |
 |------|--------|------|--------|--------|---------|
 | PT Maju Jaya | Surabaya | Jati | 50 m³ | Rp 750jt | ✅ |
@@ -341,9 +413,13 @@ Termasuk: Jati, Mahoni, Sonokeling, Ulin, Bangkirai, Meranti, Sungkai, Cendana, 
 | Rina Wijaya | Malang | Meranti | 15 m³ | Rp 80jt | ❌ |
 | Toko Mebel Jati | Kudus | Jati, Mahoni | 25 m³ | Rp 400jt | ❌ |
 
+**Dari localStorage (buyer yang sudah login & isi profile):**
+- Digabungkan dengan data hardcoded
+- Diurutkan: premium di atas, non-premium di bawah
+
 ### 8.4 Data Tren Harga (6 bulan)
 
-Untuk Jati, Mahoni, Meranti — data dari Januari hingga Juni
+Untuk semua 7 jenis kayu — data dari Januari hingga Juni
 
 ### 8.5 Katalog Pohon (7)
 
@@ -422,6 +498,7 @@ Semua `<select>` element menggunakan custom SVG arrow icon dengan padding kanan 
 - [x] ~~Responsive design untuk mobile & tablet~~ ✅ (19 Juni 2026)
 - [x] ~~Hapus komponen kosong~~ ✅ (19 Juni 2026)
 - [x] ~~Hapus atau gunakan `featured-products.tsx`~~ ✅ (19 Juni 2026)
+- [x] ~~Login & dashboard pembeli~~ ✅ (19 Juni 2026)
 
 ### Prioritas Menengah
 - [ ] Backend API untuk auth (register, login, session)
@@ -449,6 +526,7 @@ Semua `<select>` element menggunakan custom SVG arrow icon dengan padding kanan 
 ### Commit Terakhir
 | Hash | Message | Tanggal |
 |------|---------|---------|
+| `26867ce` | feat: tambah fitur login & dashboard pembeli | 19 Juni 2026 |
 | `cb89df5` | update: perbaiki logo & gambar halaman register & forgot password | 19 Juni 2026 |
 | `5d2d981` | revert: hapus animasi floating leaves, sisakan wood particles saja | 19 Juni 2026 |
 | `9299f46` | feat: tambah animasi floating leaves di hero section | 19 Juni 2026 |
