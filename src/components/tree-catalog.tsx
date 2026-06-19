@@ -85,7 +85,7 @@ function TreeCatalog() {
   const displayedTrees = trees.slice(0, 3);
 
   return (
-    <section className="px-[160px] py-[80px] bg-[#F9F9F9]">
+    <section className="px-4 md:px-8 lg:px-[160px] py-12 md:py-16 lg:py-[80px] bg-[#F9F9F9]">
       {/* Section Header */}
       <div className="text-center mb-12">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#2F5E2F]/10 mb-4">
@@ -103,7 +103,7 @@ function TreeCatalog() {
       </div>
 
       {/* Trees Grid */}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {displayedTrees.map((tree) => (
           <div
             key={tree.id}

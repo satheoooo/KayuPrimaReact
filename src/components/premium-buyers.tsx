@@ -50,7 +50,7 @@ function PremiumBuyers() {
 
   return (
     <>
-      <section className="px-[160px] py-[80px] bg-white">
+      <section className="px-4 md:px-8 lg:px-[160px] py-12 md:py-16 lg:py-[80px] bg-white">
         {/* Section Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#2F5E2F]/10 mb-4">
@@ -70,7 +70,7 @@ function PremiumBuyers() {
         {/* Buyers Container */}
         <div className="relative">
           {/* Premium Buyers Cards - Blurred for non-premium */}
-          <div className={`grid grid-cols-2 gap-6 mb-6 ${shouldBlur ? "blur-md pointer-events-none" : ""}`}>
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 ${shouldBlur ? "blur-md pointer-events-none" : ""}`}>
             {premiumBuyers.map((buyer) => (
               <div
                 key={buyer.id}

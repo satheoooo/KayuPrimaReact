@@ -16,7 +16,7 @@ function BrandLogos() {
   return (
     <section className="py-[60px] bg-[#F9F9F9] overflow-hidden">
       {/* Section Header */}
-      <div className="text-center mb-10 px-[160px]">
+      <div className="text-center mb-10 px-4 md:px-8 lg:px-[160px]">
         <h2 className="text-[28px] font-bold text-[#2F5E2F] mb-2">
           Dipercaya Oleh
         </h2>
@@ -72,7 +72,7 @@ function BrandLogos() {
       </div>
 
       {/* Trust Banner */}
-      <div className="mt-10 mx-[160px] bg-white rounded-2xl p-6 flex items-center justify-between border border-gray-100">
+      <div className="mt-10 mx-4 md:mx-8 lg:mx-[160px] bg-white rounded-2xl p-5 md:p-6 flex flex-col sm:flex-row items-center justify-between gap-6 border border-gray-100">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-full bg-[#2F5E2F]/10 flex items-center justify-center">
             <svg className="w-6 h-6 text-[#2F5E2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,7 +84,7 @@ function BrandLogos() {
             <p className="text-[13px] text-[#4A4A4A]">Sistem Verifikasi Legalitas Kayu - Jaminan kayu legal & berkelanjutan</p>
           </div>
         </div>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 sm:gap-6">
           <div className="text-center">
             <p className="text-[24px] font-bold text-[#2F5E2F]">500+</p>
             <p className="text-[12px] text-[#4A4A4A]">Mitra Bisnis</p>

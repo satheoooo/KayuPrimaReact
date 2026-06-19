@@ -9,6 +9,7 @@ function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showPremiumModal, setShowPremiumModal] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const handlePembeliPremiumClick = () => {
     if (!isAuthenticated) {
@@ -36,12 +37,13 @@ function Navbar() {
 
   return (
     <>
-      <nav className="flex justify-between items-center px-[160px] py-[18px] bg-white border-b border-gray-100">
+      <nav className="flex justify-between items-center px-4 md:px-8 lg:px-[160px] py-4 bg-white border-b border-gray-100">
         <Link to="/">
           <Logo size="sm" />
         </Link>
 
-        <div className="flex items-center gap-8">
+        {/* Desktop nav */}
+        <div className="hidden md:flex items-center gap-8">
           <Link
             to="/catalog"
             className="text-[#4A4A4A] font-medium hover:text-[#2F5E2F] transition"
@@ -146,7 +148,84 @@ function Navbar() {
             </Link>
           )}
         </div>
+
+        {/* Mobile hamburger */}
+        <button
+          onClick={() => setShowMobileMenu(!showMobileMenu)}
+          className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
+        >
+          <svg className="w-6 h-6 text-[#4A4A4A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {showMobileMenu ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
       </nav>
+
+      {/* Mobile menu */}
+      {showMobileMenu && (
+        <div className="md:hidden bg-white border-b border-gray-100 px-4 py-4 space-y-3">
+          <Link
+            to="/catalog"
+            onClick={() => setShowMobileMenu(false)}
+            className="block py-2 text-[#4A4A4A] font-medium hover:text-[#2F5E2F] transition"
+          >
+            Katalog Pohon
+          </Link>
+          <button
+            onClick={() => { handlePembeliPremiumClick(); setShowMobileMenu(false); }}
+            className="block w-full text-left py-2 text-[#4A4A4A] font-medium hover:text-[#2F5E2F] transition"
+          >
+            Pembeli Premium
+          </button>
+          <button
+            onClick={() => { handleKalkulatorPremiumClick(); setShowMobileMenu(false); }}
+            className="block w-full text-left py-2 text-[#4A4A4A] font-medium hover:text-[#2F5E2F] transition"
+          >
+            Kalkulator Premium
+          </button>
+          {isAuthenticated ? (
+            <div className="pt-2 border-t border-gray-100 space-y-2">
+              <div className="flex items-center gap-3 py-2">
+                <img
+                  src={user?.avatar}
+                  alt={user?.name}
+                  className="w-8 h-8 rounded-full object-cover border-2 border-[#2F5E2F]"
+                />
+                <span className="text-[14px] font-medium text-[#4A4A4A]">{user?.name}</span>
+                {isPremium && (
+                  <span className="inline-flex items-center gap-1 bg-yellow-100 text-yellow-700 text-[11px] font-bold px-2 py-0.5 rounded-full">
+                    PREMIUM
+                  </span>
+                )}
+              </div>
+              <Link
+                to="/premium"
+                onClick={() => setShowMobileMenu(false)}
+                className="block py-2 text-[14px] text-[#4A4A4A] hover:text-[#2F5E2F] transition"
+              >
+                {isPremium ? "Lihat Paket Premium" : "Upgrade Premium"}
+              </Link>
+              <button
+                onClick={() => { logout(); setShowMobileMenu(false); }}
+                className="block py-2 text-[14px] text-red-500 hover:text-red-600 transition"
+              >
+                Keluar
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              onClick={() => setShowMobileMenu(false)}
+              className="block text-center py-2 rounded-full bg-[#2F5E2F] text-white text-sm hover:bg-[#244824] transition"
+            >
+              Masuk
+            </Link>
+          )}
+        </div>
+      )}
 
       {/* Login Modal */}
       {showLoginModal && (

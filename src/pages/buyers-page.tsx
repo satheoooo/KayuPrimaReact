@@ -11,7 +11,7 @@ const buyers = [
     quantity: "50 m³",
     budget: "Rp 750.000.000",
     avatar: "https://ui-avatars.com/api/?name=PT+Maju+Jaya&background=2F5E2F&color=fff",
-    whatsapp: "6281234567890",
+    whatsapp: "6281210034369",
     isPremium: true,
   },
   {
@@ -22,7 +22,7 @@ const buyers = [
     quantity: "30 m³",
     budget: "Rp 240.000.000",
     avatar: "https://ui-avatars.com/api/?name=CV+Berkah+Furniture&background=2F5E2F&color=fff",
-    whatsapp: "6281234567891",
+    whatsapp: "6281210034369",
     isPremium: true,
   },
   {
@@ -33,7 +33,7 @@ const buyers = [
     quantity: "20 m³",
     budget: "Rp 340.000.000",
     avatar: "https://ui-avatars.com/api/?name=PT+Sinar+Kayu&background=2F5E2F&color=fff",
-    whatsapp: "6281234567892",
+    whatsapp: "6281210034369",
     isPremium: true,
   },
   {
@@ -44,7 +44,7 @@ const buyers = [
     quantity: "10 m³",
     budget: "Rp 150.000.000",
     avatar: "https://ui-avatars.com/api/?name=Budi+Santoso&background=6B7280&color=fff",
-    whatsapp: "6281234567893",
+    whatsapp: "6281210034369",
     isPremium: false,
   },
   {
@@ -55,7 +55,7 @@ const buyers = [
     quantity: "15 m³",
     budget: "Rp 80.000.000",
     avatar: "https://ui-avatars.com/api/?name=Rina+Wijaya&background=6B7280&color=fff",
-    whatsapp: "6281234567894",
+    whatsapp: "6281210034369",
     isPremium: false,
   },
   {
@@ -66,7 +66,7 @@ const buyers = [
     quantity: "25 m³",
     budget: "Rp 400.000.000",
     avatar: "https://ui-avatars.com/api/?name=Toko+Mebel+Jati&background=6B7280&color=fff",
-    whatsapp: "6281234567895",
+    whatsapp: "6281210034369",
     isPremium: false,
   },
 ];
@@ -109,10 +109,10 @@ function BuyersPage() {
       <Navbar />
 
       {/* Header */}
-      <section className="bg-[#2F5E2F] py-12 px-[160px]">
-        <div className="flex items-center justify-between">
+      <section className="bg-[#2F5E2F] py-10 md:py-12 px-4 md:px-8 lg:px-[160px]">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-[32px] font-bold text-white mb-2">
+            <h1 className="text-[24px] md:text-[28px] lg:text-[32px] font-bold text-white mb-2">
               Calon Pembeli
             </h1>
             <p className="text-[15px] text-white/80">
@@ -134,8 +134,8 @@ function BuyersPage() {
       </section>
 
       {/* Buyers Grid */}
-      <section className="px-[160px] py-[40px]">
-        <div className="grid grid-cols-2 gap-6">
+      <section className="px-4 md:px-8 lg:px-[160px] py-8 md:py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {buyers.map((buyer) => (
             <div
               key={buyer.id}

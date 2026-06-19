@@ -54,9 +54,9 @@ function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F9F9] flex">
+    <div className="min-h-screen bg-[#F9F9F9] flex flex-col lg:flex-row">
       {/* Left Side - Form */}
-      <div className="w-[500px] bg-white flex flex-col justify-center px-12">
+      <div className="w-full lg:w-[500px] bg-white flex flex-col justify-center px-6 md:px-12 py-10 lg:py-0">
         {/* Logo */}
         <Link to="/" className="mb-10">
           <Logo size="md" />
@@ -150,7 +150,7 @@ function LoginPage() {
       </div>
 
       {/* Right Side - Image */}
-      <div className="flex-1 relative overflow-hidden">
+      <div className="hidden lg:flex flex-1 relative overflow-hidden">
         <img
           src="https://images.pexels.com/photos/36965390/pexels-photo-36965390.png"
           alt="Kayu Premium"
@@ -158,7 +158,7 @@ function LoginPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#2F5E2F]/80 to-transparent"></div>
         <div className="absolute top-1/2 left-16 -translate-y-1/2 max-w-[400px]">
-          <h2 className="text-[36px] font-bold text-white mb-4 leading-tight">
+          <h2 className="text-[28px] lg:text-[36px] font-bold text-white mb-4 leading-tight">
             Selamat Datang di KayuPrima
           </h2>
           <p className="text-[16px] text-white/90 leading-relaxed">

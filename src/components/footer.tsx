@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <footer className="bg-[#2F5E2F] text-white">
-      <div className="px-[160px] py-[60px]">
-        <div className="grid grid-cols-4 gap-12">
+      <div className="px-4 md:px-8 lg:px-[160px] py-10 md:py-12 lg:py-[60px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
           <div className="col-span-1">
             <h3 className="text-[22px] font-bold mb-4">KayuPrima</h3>
@@ -108,7 +108,7 @@ function Footer() {
 
       {/* Copyright */}
       <div className="border-t border-white/20">
-        <div className="px-[160px] py-6 text-center">
+        <div className="px-4 md:px-8 lg:px-[160px] py-6 text-center">
           <p className="text-[14px] text-gray-200">
             © 2025 KayuPrima. All rights reserved.
           </p>

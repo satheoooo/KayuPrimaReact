@@ -30,7 +30,7 @@ const testimonials = [
 
 function Testimonials() {
   return (
-    <section className="px-[160px] py-[80px] bg-white">
+    <section className="px-4 md:px-8 lg:px-[160px] py-12 md:py-16 lg:py-[80px] bg-white">
       {/* Section Header */}
       <div className="text-center mb-12">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#2F5E2F]/10 mb-4">
@@ -47,7 +47,7 @@ function Testimonials() {
       </div>
 
       {/* Testimonials Grid */}
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {testimonials.map((item) => (
           <div
             key={item.id}

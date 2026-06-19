@@ -36,7 +36,7 @@ function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative flex items-center justify-between px-[160px] py-[80px] bg-white overflow-hidden"
+      className="relative flex flex-col lg:flex-row items-center justify-between px-4 md:px-8 lg:px-[160px] py-12 md:py-16 lg:py-[80px] bg-white overflow-hidden"
     >
       {/* Cursor Glow Effect */}
       <div
@@ -52,7 +52,7 @@ function Hero() {
       />
 
       {/* Left Content */}
-      <div className="relative z-10 flex flex-col gap-6 max-w-[600px]">
+      <div className="relative z-10 flex flex-col gap-4 md:gap-6 max-w-[600px] text-center lg:text-left">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-[#F0F7F0] px-4 py-2 rounded-full w-fit">
           <svg className="w-4 h-4 text-[#2F5E2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,20 +62,20 @@ function Hero() {
         </div>
 
         {/* Headline */}
-        <h1 className="text-[52px] font-bold leading-[1.1] text-[#1a1a1a]">
+        <h1 className="text-[28px] md:text-[40px] lg:text-[52px] font-bold leading-[1.1] text-[#1a1a1a]">
           Jangan Jual Kayu Anda Sebelum Tahu{" "}
           <span className="text-[#2F5E2F]">Nilai Sebenarnya.</span>
         </h1>
 
         {/* Subtext */}
-        <p className="text-[17px] text-[#4A4A4A] leading-relaxed max-w-[500px]">
+        <p className="text-[15px] lg:text-[17px] text-[#4A4A4A] leading-relaxed max-w-[500px] mx-auto lg:mx-0">
           Hitung estimasi nilai wajar pasar untuk pohon Jati, Mahoni,
           Sengon, dan lainnya berdasarkan data harga real-time. Cepat,
           akurat, dan 100% gratis untuk pemilik lahan.
         </p>
 
         {/* Features */}
-        <div className="flex items-center gap-8 mt-6">
+        <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-8 mt-4 md:mt-6">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-[#F0F7F0] flex items-center justify-center">
               <svg className="w-5 h-5 text-[#2F5E2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -104,7 +104,7 @@ function Hero() {
       </div>
 
       {/* Right Content - Calculator */}
-      <div className="relative z-10">
+      <div className="relative z-10 w-full lg:w-auto mt-8 lg:mt-0">
         <Calculator />
       </div>
     </section>

@@ -32,7 +32,7 @@ function Calculator() {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-7 w-[450px]">
+    <div className="bg-white rounded-2xl shadow-lg p-5 md:p-7 w-full lg:w-[450px]">
       <div className="flex items-center gap-3 mb-1">
         <div className="w-10 h-10 rounded-xl bg-[#F0F7F0] flex items-center justify-center">
           <svg className="w-6 h-6 text-[#2F5E2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,7 +64,7 @@ function Calculator() {
       </div>
 
       {/* Width & Height */}
-      <div className="grid grid-cols-2 gap-4 mb-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
         <div>
           <label className="block text-[14px] font-medium text-[#4A4A4A] mb-2">
             Diameter (cm)

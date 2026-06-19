@@ -121,7 +121,7 @@ function PremiumPage() {
       <Navbar />
 
       {/* Header */}
-      <section className="bg-[#2F5E2F] py-16 px-[160px]">
+      <section className="bg-[#2F5E2F] py-12 md:py-16 px-4 md:px-8 lg:px-[160px]">
         <div className="text-center">
           <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
             <svg className="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
@@ -129,7 +129,7 @@ function PremiumPage() {
             </svg>
             <span className="text-[14px] font-medium text-white">Premium Membership</span>
           </div>
-          <h1 className="text-[42px] font-bold text-white mb-4">
+          <h1 className="text-[28px] md:text-[36px] lg:text-[42px] font-bold text-white mb-4">
             Pilih Paket Premium
           </h1>
           <p className="text-[16px] text-white/80 max-w-[500px] mx-auto">
@@ -139,7 +139,7 @@ function PremiumPage() {
       </section>
 
       {/* Packages */}
-      <section className="px-[160px] py-[60px]">
+      <section className="px-4 md:px-8 lg:px-[160px] py-10 md:py-12 lg:py-[60px]">
         <div className="flex justify-center">
           {packages.map((pkg) => (
             <div

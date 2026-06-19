@@ -55,8 +55,6 @@ function PremiumCalculatorPage() {
   const compareWood1Data = woodTypes.find((w) => w.id === compareWood1);
   const compareWood2Data = woodTypes.find((w) => w.id === compareWood2);
 
-  const maxPrice = Math.max(...priceHistory.map((h) => h[selectedChartWood as keyof typeof h] as number));
-
   // Login check
   if (!isAuthenticated) {
     return (
@@ -92,7 +90,7 @@ function PremiumCalculatorPage() {
       <Navbar />
 
       {/* Header */}
-      <section className="bg-[#2F5E2F] py-12 px-[160px]">
+      <section className="bg-[#2F5E2F] py-10 md:py-12 px-4 md:px-8 lg:px-[160px]">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
             <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,14 +98,14 @@ function PremiumCalculatorPage() {
             </svg>
           </div>
           <div>
-            <h1 className="text-[28px] font-bold text-white">Kalkulator Premium</h1>
+            <h1 className="text-[22px] md:text-[26px] lg:text-[28px] font-bold text-white">Kalkulator Premium</h1>
             <p className="text-[14px] text-white/80">Perbandingan harga, grafik tren, dan export</p>
           </div>
         </div>
       </section>
 
-      <div className="px-[160px] py-[40px]">
-        <div className="grid grid-cols-2 gap-8">
+      <div className="px-4 md:px-8 lg:px-[160px] py-8 md:py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Column - Kalkulator */}
           <div className="flex flex-col gap-8">
             {/* Kalkulator Dasar */}
