@@ -131,7 +131,7 @@ function BuyerHomePage() {
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
                 placeholder="PT Contoh Jaya"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-[13px] text-[#4A4A4A] focus:outline-none focus:border-[#2F5E2F] transition bg-gray-50"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-[13px] text-[#4A4A4A] focus:outline-none focus:border-[#2F5E2F] focus:ring-2 focus:ring-[#2F5E2F]/10 transition bg-gray-50"
               />
             </div>
 
@@ -144,7 +144,7 @@ function BuyerHomePage() {
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder="Surabaya, Jawa Timur"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-[13px] text-[#4A4A4A] focus:outline-none focus:border-[#2F5E2F] transition bg-gray-50"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-[13px] text-[#4A4A4A] focus:outline-none focus:border-[#2F5E2F] focus:ring-2 focus:ring-[#2F5E2F]/10 transition bg-gray-50"
               />
             </div>
 
@@ -164,7 +164,7 @@ function BuyerHomePage() {
                     setWhatsapp(val);
                   }}
                   placeholder="81234567890"
-                  className="w-full pl-12 pr-3.5 py-2.5 rounded-xl border border-gray-200 text-[13px] text-[#4A4A4A] focus:outline-none focus:border-[#2F5E2F] transition bg-gray-50"
+                  className="w-full pl-12 pr-3.5 py-2.5 rounded-xl border border-gray-200 text-[13px] text-[#4A4A4A] focus:outline-none focus:border-[#2F5E2F] focus:ring-2 focus:ring-[#2F5E2F]/10 transition bg-gray-50"
                 />
               </div>
             </div>
@@ -209,7 +209,7 @@ function BuyerHomePage() {
                       setQuantity(val ? `${val} m³` : "");
                     }}
                     placeholder="50 m³"
-                    className="w-full px-3.5 py-2.5 pr-8 rounded-xl border border-gray-200 text-[13px] text-[#4A4A4A] focus:outline-none focus:border-[#2F5E2F] transition bg-gray-50"
+                    className="w-full px-3.5 py-2.5 pr-8 rounded-xl border border-gray-200 text-[13px] text-[#4A4A4A] focus:outline-none focus:border-[#2F5E2F] focus:ring-2 focus:ring-[#2F5E2F]/10 transition bg-gray-50"
                   />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[12px] text-gray-400 pointer-events-none">
                     m³
@@ -237,7 +237,7 @@ function BuyerHomePage() {
                       }
                     }}
                     placeholder="750.000.000"
-                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-gray-200 text-[13px] text-[#4A4A4A] focus:outline-none focus:border-[#2F5E2F] transition bg-gray-50"
+                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-gray-200 text-[13px] text-[#4A4A4A] focus:outline-none focus:border-[#2F5E2F] focus:ring-2 focus:ring-[#2F5E2F]/10 transition bg-gray-50"
                   />
                 </div>
               </div>

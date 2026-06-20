@@ -81,43 +81,42 @@ const trees = [
 import { Link } from "react-router-dom";
 
 function TreeCatalog() {
-  // Tampilkan 3 card pertama saja di homepage
   const displayedTrees = trees.slice(0, 3);
 
   return (
     <section className="px-4 md:px-8 lg:px-[160px] py-12 md:py-16 lg:py-[80px] bg-[#F9F9F9]">
       {/* Section Header */}
       <div className="text-center mb-12">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#2F5E2F]/10 mb-4">
-          <svg className="w-8 h-8 text-[#2F5E2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#F0F7F0] mb-4">
+          <svg className="w-7 h-7 text-[#2F5E2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
           </svg>
         </div>
-        <h2 className="text-[36px] font-bold text-[#2F5E2F] mb-4">
+        <h2 className="text-[32px] font-bold text-[#1a1a1a] mb-3">
           Katalog Pohon
         </h2>
-        <p className="text-[16px] text-[#4A4A4A] max-w-[600px] mx-auto">
+        <p className="text-[14px] text-gray-400 max-w-[500px] mx-auto leading-relaxed">
           Kenali jenis kayu yang bisa Anda jual. Ketahui karakteristik, kegunaan,
           dan harga pasar terkini.
         </p>
       </div>
 
       {/* Trees Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {displayedTrees.map((tree) => (
           <div
             key={tree.id}
-            className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition group"
+            className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-[0_8px_30px_-12px_rgba(0,0,0,0.12)] transition-all duration-300 group border border-gray-100/60"
           >
             {/* Image */}
             <div className="h-[200px] overflow-hidden relative">
               <img
                 src={tree.image}
                 alt={tree.name}
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
               />
-              <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                <span className="text-[13px] font-bold text-[#2F5E2F]">
+              <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">
+                <span className="text-[12px] font-bold text-[#2F5E2F]">
                   {tree.price}{tree.unit}
                 </span>
               </div>
@@ -126,26 +125,26 @@ function TreeCatalog() {
             {/* Content */}
             <div className="p-5">
               <div className="mb-3">
-                <h3 className="text-[18px] font-bold text-[#2F5E2F]">
+                <h3 className="text-[17px] font-bold text-[#1a1a1a]">
                   Kayu {tree.name}
                 </h3>
-                <p className="text-[12px] text-gray-400 italic">
+                <p className="text-[11px] text-gray-400 italic">
                   {tree.latin}
                 </p>
               </div>
 
-              <p className="text-[14px] text-[#4A4A4A] mb-4 line-clamp-2">
+              <p className="text-[13px] text-[#4A4A4A] mb-4 line-clamp-2 leading-relaxed">
                 {tree.description}
               </p>
 
               {/* Characteristics */}
-              <div className="mb-4">
-                <p className="text-[12px] font-medium text-gray-500 mb-2">Karakteristik:</p>
-                <div className="flex flex-wrap gap-2">
+              <div className="mb-3.5">
+                <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-2">Karakteristik</p>
+                <div className="flex flex-wrap gap-1.5">
                   {tree.characteristics.map((char, i) => (
                     <span
                       key={i}
-                      className="text-[11px] px-2 py-1 bg-[#F0F7F0] text-[#2F5E2F] rounded-full"
+                      className="text-[11px] px-2.5 py-1 bg-[#F0F7F0] text-[#2F5E2F] rounded-full font-medium"
                     >
                       {char}
                     </span>
@@ -155,12 +154,12 @@ function TreeCatalog() {
 
               {/* Usage */}
               <div className="mb-4">
-                <p className="text-[12px] font-medium text-gray-500 mb-2">Kegunaan:</p>
-                <div className="flex flex-wrap gap-2">
+                <p className="text-[11px] font-medium text-gray-400 uppercase tracking-wider mb-2">Kegunaan</p>
+                <div className="flex flex-wrap gap-1.5">
                   {tree.usage.map((use, i) => (
                     <span
                       key={i}
-                      className="text-[11px] px-2 py-1 bg-gray-100 text-gray-600 rounded-full"
+                      className="text-[11px] px-2.5 py-1 bg-gray-100 text-gray-500 rounded-full"
                     >
                       {use}
                     </span>
@@ -169,10 +168,10 @@ function TreeCatalog() {
               </div>
 
               {/* CTA */}
-              <button className="w-full py-2.5 rounded-xl border-2 border-[#2F5E2F] text-[#2F5E2F] text-[14px] font-medium hover:bg-[#2F5E2F] hover:text-white transition flex items-center justify-center gap-2">
+              <button className="w-full py-2.5 rounded-xl border border-[#2F5E2F] text-[#2F5E2F] text-[13px] font-medium hover:bg-[#2F5E2F] hover:text-white active:scale-[0.98] transition-all duration-150 flex items-center justify-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
                 Lihat Detail
               </button>
