@@ -146,7 +146,7 @@ function BuyerLoginPage() {
       {/* Right Side - Image */}
       <div className="hidden lg:block flex-1 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=1200&h=900&fit=crop"
+          src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1200&h=900&fit=crop"
           alt="Kayu Premium"
           className="absolute inset-0 w-full h-full object-cover"
         />

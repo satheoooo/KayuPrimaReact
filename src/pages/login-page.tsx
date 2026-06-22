@@ -152,7 +152,7 @@ function LoginPage() {
       {/* Right Side - Image */}
       <div className="hidden lg:flex flex-1 relative overflow-hidden">
         <img
-          src="https://images.pexels.com/photos/36965390/pexels-photo-36965390.png"
+          src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1200&h=900&fit=crop"
           alt="Kayu Premium"
           className="w-full h-full object-cover"
         />

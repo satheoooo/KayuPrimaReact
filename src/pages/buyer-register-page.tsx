@@ -208,7 +208,7 @@ function BuyerRegisterPage() {
       {/* Right Side - Image */}
       <div className="hidden lg:block flex-1 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1542621334-a254cf47733d?w=1200&h=900&fit=crop"
+          src="https://images.unsplash.com/photo-1476231682828-37e571bc172f?w=1200&h=900&fit=crop"
           alt="Kayu Premium"
           className="absolute inset-0 w-full h-full object-cover"
         />
